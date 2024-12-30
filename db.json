@@ -7,64 +7,7 @@
       "description": "phones",
       "tasks": 6,
       "status": "To do"
-    },
-    {
-      "id": "1425d800-0574-474e-a54f-bd5581511b23",
-      "createdAt": 1735541555884,
-      "name": "фывфывфыв",
-      "description": "ыфвфывфывыв",
-      "tasks": 0,
-      "status": "To do"
     }
   ],
-  "tasks": [
-    {
-      "id": "b4cdf8c8-ebc4-4a44-b91f-2066d11ea2f4",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "asdasdsdsd",
-      "assignee": "John Doe",
-      "status": "In Progress",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    },
-    {
-      "id": "69d84da0-3a53-4f67-93aa-6360dacc04a3",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "adsfdsadsad",
-      "assignee": "Dy Loch",
-      "status": "To do",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    },
-    {
-      "id": "2b2186e1-5151-4471-8d00-a1b34474b531",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "asdasdsd",
-      "assignee": "John Doe",
-      "status": "Done",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    },
-    {
-      "id": "190b7006-8456-43bf-bac0-3a50cf9382b8",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "aasdasdasdasfwergwrg",
-      "assignee": "Dy Loch",
-      "status": "Done",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    },
-    {
-      "id": "4c214679-f3ee-4b6c-9aa0-488acd6d8bbb",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "Apple",
-      "assignee": "John Doe",
-      "status": "To do",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    },
-    {
-      "id": "16d8bb06-3594-48fb-87e8-c49ecc0bc414",
-      "project_id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
-      "name": "asdasdasdasd",
-      "assignee": "John Doe",
-      "status": "In Progress",
-      "expiryAt": "2024-12-30T22:00:00.000Z"
-    }
-  ]
+  "tasks": []
 }

@@ -1,0 +1,12 @@
+.projects {
+  &-header,
+  &-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-info {
+    gap: 10px;
+  }
+}

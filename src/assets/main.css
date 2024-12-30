@@ -1,0 +1,11 @@
+@import './base.css';
+@import './app/input-group.scss';
+@import './app/projects.scss';
+@import './app/tasks.scss';
+@import './app/kanban.scss';
+@import './app/task-card.scss';
+@import './app/modal.scss';
+
+.main {
+    padding: 1.2rem;
+}

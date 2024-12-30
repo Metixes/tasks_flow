@@ -1,0 +1,12 @@
+.input-group {
+  width: 100%;
+  position: relative;
+
+  &-error {
+    position: absolute;
+    bottom: -18px;
+    left: 14px;
+    font-size: 0.75rem;
+    color: var(--p-inputtext-invalid-border-color);
+  }
+}

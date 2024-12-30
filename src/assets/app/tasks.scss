@@ -1,0 +1,9 @@
+.tasks {
+  &-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--p-text-color);
+  }
+}

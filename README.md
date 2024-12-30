@@ -107,4 +107,106 @@ npm run lint
 
    - Rename the Template: To create your own environment file, rename .env.example to .env
 
-This structure promotes modularity and scalability, making it easier to maintain and expand the application.
+## Description
+
+- Tasks Flow is a Single Page Application (SPA) designed to manage "Projects and Tasks." It leverages modern web technologies like Vue.js 3, TypeScript, Vuex, and Axios to create a highly interactive and stateful user experience. The application includes complex UI elements and state management features to streamline project and task workflows.
+
+## Features
+
+**General Application Features**
+
+      - Projects Table: View projects in a sortable and filterable table with resizable columns.
+
+      - Project Details Page: Interactive task table with drag-and-drop functionality for task ordering and status updates.
+
+      - Task Form: Create and edit tasks with field validation.
+
+      - Persistent State: Retain application state across reloads using LocalStorage.
+
+**Technical Highlights**
+
+      - Frontend Framework: Vue.js 3 (Composition API).
+
+      - State Management: Vuex.
+
+      - HTTP Requests: Axios with mock API or JSON Server.
+
+      - Styling: SCSS for modular and maintainable styles.
+
+      - Drag-and-Drop: Implemented using VueDraggable or equivalent.
+
+**Data Tables: Enhanced with:**
+
+      - Sorting by columns.
+
+      - Filtering options.
+
+      - Resizable columns.
+
+      - Functionality
+
+      - Projects Table
+
+**Columns:**
+
+      - Project ID
+
+      - Project Name
+
+      - Number of Tasks
+
+      - Status
+
+      - Creation Date
+
+**Features:**
+
+      - Resizable columns via drag-and-drop.
+
+**Add Project:**
+
+      - Opens a modal form to create a new project with fields for Name (required) and Description.
+
+      - Saves new projects to the list.
+
+**Navigation:**
+
+      - Click a project row to navigate to the Project Details page.
+
+      - Project Details Page (Task List)
+
+**Columns:**
+
+      - Task ID
+
+      - Task Name
+
+      - Assignee
+
+      - Status
+
+      - Due Date
+
+**Features:**
+
+      - Reorder tasks using drag-and-drop.
+
+      - Change task status by dragging tasks between sections (e.g., "To Do," "In Progress," "Done").
+
+      - Resizable columns.
+
+**Add Task:**
+
+      - Opens a modal form to create a new task with fields for:
+
+      - Task Name
+
+      - Assignee (dropdown)
+
+      - Status
+
+      - Due Date
+
+      - Validates all fields.
+
+      - API and State Management

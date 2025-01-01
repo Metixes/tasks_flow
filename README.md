@@ -191,6 +191,10 @@ npm run lint
 
       - Reorder tasks using drag-and-drop.
 
+      - Search tasks by keyword task name, assignee.
+
+      - Sort tasks by date.
+
       - Change task status by dragging tasks between sections (e.g., "To Do," "In Progress," "Done").
 
       - Resizable columns.

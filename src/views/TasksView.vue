@@ -172,12 +172,14 @@ const [assignee] = defineField("assignee");
 const [status] = defineField("status");
 const [expiryAt] = defineField("expiryAt");
 
-const onSaveTask = handleSubmit((task) => {
+const onSaveTask = handleSubmit(async (task) => {
   if (isTaskEditing.value) {
-    store.dispatch("tasks/updateTask", {
+    await store.dispatch("tasks/updateTask", {
       task,
       id: editedTaskId.value,
     });
+
+    tasksCopy.value = store.state.tasks.tasks;
 
     toast.add({
       severity: "success",
@@ -195,7 +197,10 @@ const onSaveTask = handleSubmit((task) => {
       expiryAt: task.expiryAt,
     };
 
-    store.dispatch("tasks/addTask", { task: newTask, projectId: PROJECT_ID });
+    await store.dispatch("tasks/addTask", {
+      task: newTask,
+      projectId: PROJECT_ID,
+    });
     tasksCopy.value = store.state.tasks.tasks;
 
     toast.add({
@@ -228,8 +233,9 @@ const onEditTask = async (task: Task) => {
   });
 };
 
-const onDeleteTask = (id: string) => {
-  store.dispatch("tasks/deleteTask", { id, projectId: PROJECT_ID });
+const onDeleteTask = async (id: string) => {
+  await store.dispatch("tasks/deleteTask", { id, projectId: PROJECT_ID });
+  tasksCopy.value = store.state.tasks.tasks;
 
   toast.add({
     severity: "success",

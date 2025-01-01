@@ -72,10 +72,10 @@ const actions : ActionTree<TaskState, any> = {
   async sortTasks({ commit, state }, sortedBy: string) {
     switch (sortedBy) {
       case "date-asc":
-        commit("setTasks", state.tasks.sort((a, b) => a.expiryAt.localeCompare(b.expiryAt)));
+        commit("setTasks", [...state.tasks].sort((a, b) => a.expiryAt.localeCompare(b.expiryAt)));
         break;
       case "date-desc":
-        commit("setTasks", state.tasks.sort((a, b) => b.expiryAt.localeCompare(a.expiryAt)));
+        commit("setTasks", [...state.tasks].sort((a, b) => b.expiryAt.localeCompare(a.expiryAt)));
         break;
       default:
         commit("setTasks", state.tasks);

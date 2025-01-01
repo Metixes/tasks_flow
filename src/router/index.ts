@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProjectView from '@/views/ProjectsView.vue'
-import TasksView from '@/views/TasksView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +12,7 @@ const router = createRouter({
     {
       path: '/tasks/:id',
       name: 'tasks',
-      component: TasksView,
+      component: () => import('../views/TasksView.vue'), 
       props: true,
     },
   ],

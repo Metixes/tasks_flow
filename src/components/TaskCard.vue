@@ -1,5 +1,5 @@
 <template>
-  <div class="task-card">
+  <div v-if="task.status === title" class="task-card">
     <div class="task-card-header">
       <span>{{ task.status }}</span>
       <div class="task-card-actions">
@@ -30,16 +30,14 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import dayjs from "dayjs";
-import type { Task } from "@/types/types";
+import type { Task } from "@/types/tasks/types";
 
 const emit = defineEmits(["deleteTask", "editTask"]);
 
-const props = defineProps({
-  task: {
-    type: Object,
-    default: () => ({}),
-  },
-});
+const props = defineProps<{
+  task: Task;
+  title?: string;
+}>();
 </script>
 
 <style scoped lang="scss"></style>

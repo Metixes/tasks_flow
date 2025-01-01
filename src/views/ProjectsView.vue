@@ -119,7 +119,11 @@ import IconInfo from "@/assets/icons/IconInfo.vue";
 import Tooltip from "primevue/tooltip";
 import request from "@/services/axios";
 import dayjs from "dayjs";
-import { Project, RowEditSaveEvent, RowSelectEvent } from "@/types/types";
+import type {
+  Project,
+  RowSelectEvent,
+  RowEditSaveEvent,
+} from "@/types/projects/types";
 
 const router = useRouter();
 const store = useStore();

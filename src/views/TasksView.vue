@@ -2,12 +2,26 @@
   <div>
     <div class="tasks-header">
       <h2>Tasks</h2>
-      <Button
-        icon="pi pi-plus"
-        size="small"
-        aria-label="Create"
-        @click="showDddTaskModal = true" />
+      <div class="tasks-header-options">
+        <InputText
+          size="small"
+          v-model="searchValue"
+          placeholder="Keyword Search" />
+        <Button
+          icon="pi pi-plus"
+          size="small"
+          aria-label="Create"
+          @click="showDddTaskModal = true" />
+      </div>
     </div>
+
+    <Select
+      v-model="sortedValue"
+      :options="sortedBy"
+      placeholder="Sorted by"
+      size="small"
+      @change="sortedTasks" />
+
     <div class="kanban">
       <VueResizable
         class="kanban-column"
@@ -20,14 +34,20 @@
         </div>
         <VueDraggableNext
           class="kanban-column-area"
-          :list="store.state.tasks.tasks"
+          :list="
+            store.state.tasks.tasks.filter((task : Task) => task.status === title)
+          "
+          :key="store.state.tasks.tasks.id"
           group="tasks"
+          :sort="true"
           @change="(event) => dragTask(event, title)">
           <TaskCard
-            v-for="task in store.state.tasks.tasks"
+            v-for="task of store.state.tasks.tasks.filter(
+              (task : Task) => task.status === title
+            )"
             :key="task.id"
             :task="task"
-            v-show="task.status === title"
+            :title="title"
             @editTask="onEditTask"
             @deleteTask="onDeleteTask" />
         </VueDraggableNext>
@@ -109,8 +129,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Task, DragEvent } from "@/types/types";
-import { onMounted, ref } from "vue";
+import type { Task, DraggableEvent } from "@/types/tasks/types";
+import { onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { VueDraggableNext } from "vue-draggable-next";
 import { useRoute } from "vue-router";
@@ -132,11 +152,15 @@ const route = useRoute();
 const toast = useToast();
 const PROJECT_ID: string | string[] = route.params.id as string;
 
+const tasksCopy = ref<Task[]>(store.state.tasks.tasks);
 const showDddTaskModal = ref(false);
 const isTaskEditing = ref(false);
 const editedTaskId = ref("");
+const searchValue = ref("");
+const sortedValue = ref("");
 const assigneeList = ["John Doe", "Dy Loch"];
 const columns = ["To do", "In Progress", "Done"];
+const sortedBy = ["date-asc", "date-desc"];
 
 const { defineField, handleSubmit, resetForm, errors, setValues, values } =
   useForm({
@@ -172,6 +196,7 @@ const onSaveTask = handleSubmit((task) => {
     };
 
     store.dispatch("tasks/addTask", { task: newTask, projectId: PROJECT_ID });
+    tasksCopy.value = store.state.tasks.tasks;
 
     toast.add({
       severity: "success",
@@ -179,8 +204,14 @@ const onSaveTask = handleSubmit((task) => {
       detail: "Task added successfully",
       life: 2000,
     });
-  }
 
+    newTask.id = "";
+    newTask.project_id = "";
+    newTask.name = "";
+    newTask.assignee = "";
+    newTask.status = "" as "To do" | "In Progress" | "Done";
+    newTask.expiryAt = "";
+  }
   closeModal();
 });
 
@@ -215,15 +246,46 @@ const closeModal = () => {
   resetForm();
 };
 
-const dragTask = (event, title: string) => {
+const dragTask = (event: DraggableEvent, title: string) => {
+  if (event.moved) {
+    const { oldIndex, newIndex } = event.moved;
+
+    if (oldIndex !== newIndex) {
+      const movedItem = store.state.tasks.tasks.splice(oldIndex, 1)[0];
+      store.state.tasks.tasks.splice(newIndex, 0, movedItem);
+    }
+  }
+
   if (event.added) {
-    event.added.element.status = title;
+    event.added.element.status = title as "To do" | "In Progress" | "Done";
     store.dispatch("tasks/updateTask", { task: event.added.element });
   }
 };
 
-onMounted(() => {
-  store.dispatch("tasks/getTasks", PROJECT_ID);
+const sortedTasks = () => {
+  store.dispatch("tasks/sortTasks", sortedValue.value);
+};
+
+const searchByKeyword = () => {
+  const filteredTasks = tasksCopy.value.filter(
+    (task: Task) =>
+      task.name.toLowerCase().includes(searchValue.value.toLowerCase()) ||
+      task.assignee.toLowerCase().includes(searchValue.value.toLowerCase())
+  );
+  store.commit("tasks/setTasks", filteredTasks);
+};
+
+watch(searchValue, (newValue, oldValue) => {
+  if (newValue.trim()) {
+    searchByKeyword();
+  } else if (newValue.trim() !== oldValue.trim()) {
+    store.commit("tasks/setTasks", tasksCopy.value);
+  }
+});
+
+onMounted(async () => {
+  await store.dispatch("tasks/getTasks", PROJECT_ID);
+  tasksCopy.value = store.state.tasks.tasks;
 });
 </script>
 

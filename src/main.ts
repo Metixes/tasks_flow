@@ -8,6 +8,7 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import Tooltip from 'primevue/tooltip';
 import ToastService from 'primevue/toastservice';
+// @ts-ignore-next-line
 import VueResizable from 'vue-resizable';
 import 'primeicons/primeicons.css'
 

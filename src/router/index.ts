@@ -9,6 +9,7 @@ const router = createRouter({
       name: 'home',
       component: ProjectView,
       props: true,
+      meta: { requiresAuth: true },
     },
     {
       path: '/tasks/:id',

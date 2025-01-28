@@ -9,5 +9,13 @@
       "status": "In Progress"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "74ba7321-c0e6-4d11-acc5-37ced347fffd",
+      "createdAt": 1735538123917,
+      "name": "Apple",
+      "description": "phones",
+      "status": "In Progress"
+    }
+  ]
 }
